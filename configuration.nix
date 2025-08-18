@@ -52,6 +52,7 @@
     yubikey-manager
     yubikey-personalization
     zoxide
+    fish
 
     # Development tools
     delta
@@ -119,7 +120,12 @@
     enable = true;
     enableBashIntegration = true;
   };
-
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    enableExtraSocket = false;
+    enableBrowserSocket = false;
+  };
   programs.tmux = {
     enable = true;
     shortcut = "a";
@@ -213,9 +219,12 @@
     openssh = {
       enable = true;
       settings = {
+        AllowAgentForwarding = true;
         PasswordAuthentication = false;
         PermitRootLogin = "yes";
-      };
+        StreamLocalBindUnlink = true;
+        AllowStreamLocalForwarding = "yes";
+        };
     };
 
     # YubiKey support
