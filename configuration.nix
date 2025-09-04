@@ -196,6 +196,7 @@
     firewall = {
       enable = true;
       allowPing = true;
+      allowedTCPPorts: [5000];
     };
   };
 
