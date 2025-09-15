@@ -20,6 +20,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables = {
+    SDK_PATH = "/home/ismaelsadeeq/guix-builds/Xcode_15/";
+  };
   environment.systemPackages = with pkgs; [
     # Basic tools
     bat
@@ -53,6 +56,16 @@
     yubikey-personalization
     zoxide
     fish
+    nss
+
+    # Guix tools
+    guix
+    xar
+    pbzx
+    cpio
+    rcodesign
+    gnumake42
+    
 
     # Development tools
     delta
@@ -63,6 +76,7 @@
     python3
     rustup
     uv
+
   ];
 
   fonts = {
@@ -196,7 +210,7 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts: [5000];
+      allowedTCPPorts = [80 443];
     };
   };
 
@@ -215,8 +229,28 @@
 
   # Don't require a root password for `sudo` from "wheel" users
   security.sudo.wheelNeedsPassword = false;
-
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "abubakarsadiqismail@proton.me";
+  };
   services = {
+    nginx = {
+      enable = true;
+       virtualHosts."bitcoincorefeerate.com" = {
+       forceSSL = true;
+       enableACME = true;
+       locations."/" = {
+         proxyPass = "http://127.0.0.1:5000";
+       };
+      };
+   };
+   guix = {
+     enable = true;
+   };
+                #caddy = {
+                #enable = true;
+                #virtualHosts."37.27.133.87".extraConfig = ''reverse_proxy 127.0.0.1:5000'';
+                #};
     openssh = {
       enable = true;
       settings = {
