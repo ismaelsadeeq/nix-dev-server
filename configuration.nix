@@ -57,6 +57,7 @@
     zoxide
     fish
     nss
+    cmake
 
     # Guix tools
     guix
@@ -76,7 +77,10 @@
     python3
     rustup
     uv
+    meld
 
+    # Fee estimation frontend
+    nodejs_24
   ];
 
   fonts = {
@@ -109,6 +113,7 @@
       push.autoSetupRemote = true;
       core.editor = "${pkgs.neovim}/bin/nvim";
       gpg.program = "${pkgs.gnupg}/bin/gpg2";
+      diff.tool = "meld";
     };
   };
 
