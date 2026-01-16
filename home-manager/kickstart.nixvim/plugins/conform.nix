@@ -6,7 +6,7 @@
     extraPackages = with pkgs; [
       # Used to format Lua code
       codespell
-      ruff
+      #ruff
       rustfmt
       shellcheck
       shfmt
@@ -26,11 +26,11 @@
           ];
           cpp = [ "clang_format" ];
           lua = [ "stylua" ];
-          python = [ "ruff" ];
+          #python = [ "ruff" ];
           rust = [ "rustfmt" ];
 
           # Conform can also run multiple formatters sequentially
-          # python = [ "isort "black" ];
+          #python = [ "isort "black" ];
           #
           # You can use a sublist to tell conform to run *until* a formatter
           # is found

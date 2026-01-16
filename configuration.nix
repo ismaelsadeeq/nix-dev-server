@@ -75,12 +75,15 @@
     lazygit
     lua
     python3
-    rustup
     uv
-    meld
+    zellij
+    btop
+    rustup
+    gcc
 
     # Fee estimation frontend
     nodejs_24
+
   ];
 
   fonts = {
@@ -113,7 +116,6 @@
       push.autoSetupRemote = true;
       core.editor = "${pkgs.neovim}/bin/nvim";
       gpg.program = "${pkgs.gnupg}/bin/gpg2";
-      diff.tool = "meld";
     };
   };
 
@@ -245,7 +247,7 @@
        forceSSL = true;
        enableACME = true;
        locations."/" = {
-         proxyPass = "http://127.0.0.1:5000";
+         proxyPass = "http://127.0.0.1:5001";
        };
       };
    };

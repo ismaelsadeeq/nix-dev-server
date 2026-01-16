@@ -5,9 +5,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,7 +15,7 @@
     };
   };
 
-  outputs = { nixpkgs, disko, nvf, home-manager, ... }:
+  outputs = { nixpkgs, disko, nixvim, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -33,7 +33,7 @@
             home-manager.extraSpecialArgs = { inherit pkgs; username = vars.username; };
             home-manager.users.${vars.username} = {
               imports = [
-                nvf.homeManagerModules.default
+                 nixvim.homeModules.nixvim
                 ./home-manager/home.nix
               ];
             };

@@ -4,7 +4,7 @@
     # { 'Bilal2453/luvit-meta', lazy = true },
 
     extraPackages = with pkgs; [
-      basedpyright
+      #basedpyright
       clang-tools
       cmake-language-server
       fish-lsp
@@ -13,8 +13,8 @@
       lua-language-server
       nil
       nodePackages.jsonlint
-      pyright
-      ruff
+      #pyright
+      #ruff
       stylua
       typos
       typos-lsp
@@ -90,9 +90,9 @@
         # gopls = {
         #   enable = true;
         # };
-        basedpyright = {
-          enable = true;
-        };
+        #basedpyright = {
+        #  enable = true;
+        #};
         # ...etc. See `https://nix-community.github.io/nixvim/plugins/lsp` for a list of pre-configured LSPs
         #
         # Some languages (like typscript) have entire language plugins that can be useful:
