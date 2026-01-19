@@ -21,7 +21,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.variables = {
-    SDK_PATH = "/home/ismaelsadeeq/guix-builds/Xcode_15/";
+    SDK_PATH = "/home/ismaelsadeeq/bitcoin-core/guix-builds/Xcode_15/";
   };
   environment.systemPackages = with pkgs; [
     # Basic tools
@@ -80,6 +80,7 @@
     btop
     rustup
     gcc
+    opencode
 
     # Fee estimation frontend
     nodejs_24
