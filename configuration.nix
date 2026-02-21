@@ -21,7 +21,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.variables = {
-    SDK_PATH = "/home/ismaelsadeeq/bitcoin-core/guix-builds/Xcode_15/";
+    SDK_PATH = "/home/ismaelsadeeq/bitcoin-dev/guix-builds/Xcode_15";
+    DATADIR="/data/bitcoin";
   };
   environment.systemPackages = with pkgs; [
     # Basic tools
@@ -81,9 +82,19 @@
     rustup
     gcc
     opencode
+    claude-code
+    hyperfine
 
     # Fee estimation frontend
     nodejs_24
+
+    # Gemini CLI (nixpkgs lags behind, pinned via npx)
+    (writeShellApplication {
+      name = "gemini";
+      text = ''
+        exec ${nodejs_24}/bin/npx --yes @google/gemini-cli@0.29.0 "$@"
+      '';
+    })
 
   ];
 
@@ -148,6 +159,7 @@
     enableExtraSocket = false;
     enableBrowserSocket = false;
   };
+  programs.fish.enable = true;
   programs.tmux = {
     enable = true;
     shortcut = "a";
@@ -213,12 +225,12 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "sadiq-server";
     networkmanager.enable = true;
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [80 443];
+      allowedTCPPorts = [80 443 8333 5001];
     };
   };
 
@@ -229,6 +241,7 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager" "docker" "wheel" ];
     openssh.authorizedKeys.keys = [ sshKey ];
+    shell = pkgs.fish;
   };
 
   users.users.root = {
@@ -248,7 +261,7 @@
        forceSSL = true;
        enableACME = true;
        locations."/" = {
-         proxyPass = "http://127.0.0.1:5001";
+         proxyPass = "http://127.0.0.1:3000";
        };
       };
    };
