@@ -21,7 +21,10 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.variables = {
-    SDK_PATH = "/home/ismaelsadeeq/bitcoin-dev/guix-builds/Xcode_15";
+    SDK_PATH="/home/ismaelsadeeq/bitcoin-dev/guix-builds/macos-sdks";
+    DETACHED_SIGS_REPO="/home/ismaelsadeeq/bitcoin-dev/guix-builds/bitcoin-detached-sigs";
+    GUIX_SIGS_REPO="/home/ismaelsadeeq/bitcoin-dev/guix-builds/guix.sigs";
+    SIGNER="E9F76FD7F0B66653A7D893990E3908F364989888";
     DATADIR="/data/bitcoin";
   };
   environment.systemPackages = with pkgs; [
