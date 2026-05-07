@@ -87,6 +87,8 @@
     opencode
     claude-code
     hyperfine
+    texlive.combined.scheme-medium
+
 
     # Fee estimation frontend
     nodejs_24
