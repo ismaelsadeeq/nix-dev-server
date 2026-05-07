@@ -235,7 +235,7 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [80 443 8333 5001];
+      allowedTCPPorts = [80 443 8333];
     };
   };
 
