@@ -22,6 +22,7 @@
       ".envrc"
       ".direnv/"
       ".cache/"
+      ".env"
       # temporary hack - i copy justfiles into projects that
       # dont/wont upstream the justfile, so its easier to just
       # ignore it globally for now
